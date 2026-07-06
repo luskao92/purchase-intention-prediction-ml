@@ -5,7 +5,7 @@
 > **MVP — Machine Learning & Analytics · PUC-Rio**
 > Entrega: 05 de Julho de 2026
 
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/luskao92/purchase-intention-prediction-ml/blob/main/notebook/mvp_purchase_intention.ipynb)
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1InlAxUBgMNb5s6aDYLU3x2fHp4N4Gx0n?usp=sharing)
 ![Python](https://img.shields.io/badge/Python-3.10+-3776AB?style=flat&logo=python&logoColor=white)
 ![Pandas](https://img.shields.io/badge/Pandas-2.0-150458?style=flat&logo=pandas&logoColor=white)
 ![Scikit--learn](https://img.shields.io/badge/Scikit--learn-Pipelines-F7931E?style=flat&logo=scikitlearn&logoColor=white)
@@ -84,3 +84,86 @@ df = pd.read_csv(URL)
 ---
 
 ## 🗂️ Estrutura do Notebook (10 Seções)
+
+```
+Seção 1  — Definição do Problema
+           1.1 Contexto · 1.2 Tipo de tarefa · 1.3 Por que ML
+           1.4 Premissas e hipóteses · 1.5 Restrições
+
+Seção 2  — Apresentação dos Dados
+           Fonte · Estrutura · Limitações · Critérios de escolha
+
+Seção 3  — Configuração do Ambiente e Carga dos Dados
+
+Seção 4  — Análise Exploratória          ← orientada às hipóteses H1–H3
+           4.1 Qualidade (duplicatas, tipos) · 4.2 Estatísticas descritivas
+           4.3 Distribuição do alvo · 4.4–4.5 Testes visuais das hipóteses
+
+Seção 5  — Preparação dos Dados          ← Pipeline + ColumnTransformer
+Seção 6  — Modelagem e Treinamento       ← baseline + 3 candidatos, CV 5 folds
+Seção 7  — Otimização de Hiperparâmetros ← Random Search
+Seção 8  — Avaliação dos Resultados      ← teste intocado · matriz de confusão
+                                            curva ROC · overfitting · importâncias
+Seção 9  — Conclusão
+Seção 10 — Checklist do MVP
+```
+
+---
+
+## 🧹 Decisões de Qualidade dos Dados
+
+| Problema identificado | Campo | Decisão |
+| --- | --- | --- |
+| 125 linhas duplicadas | — | Remoção — evita leakage de cópias entre treino e teste |
+| Categóricas tipadas como inteiro | `OperatingSystems`, `Browser`, `Region`, `TrafficType` | Conversão + one-hot — códigos não têm ordem |
+| Escalas muito distintas | Durações vs. taxas | `StandardScaler` nas numéricas |
+| Assimetria e outliers extremos | Variáveis de duração | Preferência por modelos de árvore, robustos a outliers |
+
+---
+
+## 📁 Estrutura do Repositório
+
+```
+purchase-intention-prediction-ml/
+│
+├── README.md
+├── data/
+│   └── online_shoppers_intention.csv     ← dataset · CSV · 12.330 linhas
+└── notebook/
+    └── mvp_purchase_intention.ipynb      ← notebook completo (Colab-ready)
+```
+
+---
+
+## 🛠️ Stack
+
+`Python 3.10+` · `Pandas` · `NumPy` · `Scikit-learn` · `Matplotlib` · `Seaborn` · `Google Colab`
+
+---
+
+## 📋 Checklist MVP — PUC-Rio
+
+- [x] Definição do problema com contexto de negócio e hipóteses
+- [x] Dataset real, público, carregado via URL raw do GitHub
+- [x] EDA orientada a hipóteses, com análise textual após cada visualização
+- [x] Pré-processamento 100% dentro de Pipelines (anti-leakage)
+- [x] Divisão estratificada + validação cruzada estratificada (5 folds)
+- [x] Baseline + 3 modelos candidatos comparados de forma justa
+- [x] Otimização de hiperparâmetros com Random Search justificado
+- [x] Avaliação em teste intocado: F1, AUC, matriz de confusão, curva ROC
+- [x] Discussão de overfitting/underfitting e limitações
+- [x] Seeds fixadas — notebook executável do início ao fim
+- [x] Checklist do edital respondido na Seção 10
+
+---
+
+## 👤 Autor
+
+**Lucas Alves Medeiros** · [@luskao92](https://github.com/luskao92)
+PUC-Rio
+
+---
+
+## 📄 Licença
+
+[MIT](LICENSE)
