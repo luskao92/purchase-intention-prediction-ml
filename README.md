@@ -129,8 +129,7 @@ purchase-intention-prediction-ml/
 ├── README.md
 ├── data/
 │   └── online_shoppers_intention.csv     ← dataset · CSV · 12.330 linhas
-└── notebook/
-    └── mvp_purchase_intention.ipynb      ← notebook completo (Colab-ready)
+└── mvp_purchase_intention.ipynb      ← notebook completo (Colab-ready)
 ```
 
 ---
